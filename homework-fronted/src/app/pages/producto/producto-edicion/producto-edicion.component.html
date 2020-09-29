@@ -1,0 +1,26 @@
+<mat-card>Ingrese los datos del producto</mat-card>
+
+<form class="product-container" [formGroup]="form" #formProducto="ngForm" (submit)="operar()">
+    <div [hidden]="true">   
+        <mat-form-field>
+            <input matInput placeholder="ID" required formControlName="id">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Nombre" minlength="3" required formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Marca" minlength="3" required formControlName="marca">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="formProducto.invalid">
+        <mat-icon>done</mat-icon>
+        <span>Aceptar</span>
+    </button>
+    <button mat-raised-button color="accent" routerLink='/producto' type="button">
+        <mat-icon>close</mat-icon>
+        <span>Cancelar</span>
+    </button>
+</form>

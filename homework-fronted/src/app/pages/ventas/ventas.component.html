@@ -1,0 +1,57 @@
+<mat-toolbar>Registro de Ventas</mat-toolbar>
+
+<div class="ventas-container">
+    <mat-form-field>
+        <mat-select placeholder="Selecciona persona" [(value)]="idPersonaSeleccionada">
+            <mat-option *ngFor="let p of (persona$ | async)" [value]="p.idPersona">
+                {{p.nombres}} {{p.apellidos}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+        
+    <mat-form-field>
+        <input matInput placeholder="Importe" type="number" [(ngModel)]="importe"> 
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha"
+            [(ngModel)]="fechaSeleccionada" (dateChange)="cambieFecha($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="producto-container">
+        <mat-card-title>Seleccionar Carrito</mat-card-title>
+    
+    <mat-form-field>
+        <mat-select placeholder="Selecciona Producto" [(value)]="idProductoSelccionado">
+            <mat-option *ngFor="let p of (producto$ |async)" [value]="p.idProducto">
+                {{p.nombre}} | {{p.marca}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Cantidad" type="number" [(ngModel)]="cantidad"> 
+    </mat-form-field>
+
+    <button mat-raised-button color="warn" (click)="agregar()">Agregar Detalle</button>
+
+    <mat-expansion-panel *ngFor="let d of detalleSeleccionados; let i=index">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{i+1}} {{d.producto.nombre}} {{d.producto.marca}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{d.cantidad}}
+            </mat-panel-description>
+            <button mat-raised-button color="warn" (click)="remover(i)">Remover</button>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+</div>
+    
+<br>
+<mat-divider></mat-divider>
+<br>
+    <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistro()">Registrar Venta</button>
+</div>

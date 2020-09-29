@@ -1,0 +1,46 @@
+<mat-toolbar>Persona</mat-toolbar>
+
+<div class="persona-div">
+    <div class="persona-header">
+        <mat-form-field>
+            <input matInput (keyup)="filtrar($event.target.value)" placeholder="Buscar Persona">
+        </mat-form-field>
+    </div>
+
+    <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="idpersona">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>IDPERSONA</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.idPersona}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nombres">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>NOMBRES</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.nombres}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidos">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>APELLIDOS</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.apellidos}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ACCIONES</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-button color="primary" (click)="abrirDialogo(row)"><mat-icon>ballot</mat-icon></button>
+                <button mat-button color="accent" (click)="eliminar(row)"><mat-icon>delete</mat-icon></button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">           
+            </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<br>
+
+<button mat-fab color="accent" (click)="abrirDialogo()" style="float: left; margin-left: 1%;">
+    <mat-icon>create</mat-icon>
+</button>

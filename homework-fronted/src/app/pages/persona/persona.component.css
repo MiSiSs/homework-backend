@@ -1,0 +1,9 @@
+.persona-div{
+    width: 100%;
+}
+.persona-header, mat-form-field{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+

@@ -1,0 +1,16 @@
+.ventas-container{
+
+    display: flex;
+    flex-direction: column;
+
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.producto-container{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
