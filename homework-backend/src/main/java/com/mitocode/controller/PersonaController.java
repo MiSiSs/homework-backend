@@ -60,13 +60,13 @@ public class PersonaController {
 		return new ResponseEntity<Persona>(obj, HttpStatus.OK);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
 		Persona obj = service.listarPorId(id);
+		
 		if(obj == null) {
 			throw new ModeloNotFoundException("ID no encontrado "+id);
-		}
-		
+		}		
 		service.eliminar(id);
 		
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

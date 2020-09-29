@@ -58,7 +58,7 @@ public class ProductoController {
 		return new ResponseEntity<Producto>(obj, HttpStatus.OK);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
 		Producto obj = service.listarPorId(id);
 		if(obj == null) {
